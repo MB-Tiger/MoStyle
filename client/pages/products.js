@@ -1,11 +1,34 @@
 import Link from "next/link";
+import axios from "axios";
+import { useQuery, dehydrate, QueryClient } from "@tanstack/react-query";
 import PageHead from "../components/PageHead";
 import ProductPattern from "../assets/svg/ProductPattern";
 import ProductCard from "../components/ProductCard";
 import MobileProductCard from "../components/mobile/MobileProductCard";
 import MobileNavbar from "../components/mobile/MobileNavbar";
 
+export async function getServerSideProps() {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery(
+    ["products"],
+    async () => await (await axios.get("http://localhost:4313/product")).data
+  );
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}
+
 const Products = () => {
+  const { data, isLoading, isError } = useQuery(["products"], () =>
+    axios.get("http://localhost:4313/product")
+  );
+
+  console.log(data);
+
   return (
     <>
       <PageHead title={"Products"} desc={"mines"} />
@@ -26,14 +49,32 @@ const Products = () => {
           </div>
           <main className="md:col-span-3 col-span-4 w-full md:mt-0 mt-8">
             <div className="w-full flex justify-between items-center bg-[#F6F7F8] rounded p-4 mb-8">
-              <div>13 items</div>
+              <div>{data.data?.length} items</div>
               <ProductPattern />
             </div>
             <div className="md:flex hidden flex-wrap justify-between items-center">
-              <ProductCard />
+              {isError ? (
+                <div>
+                  We are sorry. Something went wrong and we can't show you the
+                  result
+                </div>
+              ) : isLoading ? (
+                <div className="animate-spin w-16 h-16 m-16 rounded-full border-[10px] border-transparent border-b-[10px] border-b-red-800 mx-auto"></div>
+              ) : (
+                <ProductCard />
+              )}
             </div>
             <div className="flex md:hidden flex-wrap justify-around items-center">
-              <MobileProductCard />
+              {isError ? (
+                <div>
+                  We are sorry. Something went wrong and we can't show you the
+                  result
+                </div>
+              ) : isLoading ? (
+                <div className="animate-spin w-16 h-16 m-16 rounded-full border-[10px] border-transparent border-b-[10px] border-b-red-800 mx-auto"></div>
+              ) : (
+                <MobileProductCard />
+              )}
             </div>
           </main>
         </div>

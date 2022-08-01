@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input:focus ~ div,
+input:valid ~ div {
+  top: -12px;
+  left: 15px;
+  font-size: small;
+  font-size: 14px;
+  color: #32cd32;
+  background-color: #fff;
+  padding: 0 5px;
+}

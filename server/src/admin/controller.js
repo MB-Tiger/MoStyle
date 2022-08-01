@@ -5,9 +5,7 @@ import validatePhoneNumber from 'lib/utils/validatePhoneNumber'
 
 export default {
   createAdmin: async (req, res) => {
-  
-    print(req.body)
-  
+
     try {
      
       if (!req.body.phone || !req.body.name) throw new Error('bad input')
@@ -16,13 +14,11 @@ export default {
   
       await Admin.create({ name: req.body.name, phone: validPhone })
       
-      return res.json({msg: 'successfully created this admin, yeay!'})
-     
+      return res.json({ msg: 'successfully created this admin, yeay!' })
+      
     } catch (error) {
       res.status(500).json({msg: error.message})
     }
-  
-    res.send('ok')
   },
   loginStepOne:  async (req, res) => {
     try {

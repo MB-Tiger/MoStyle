@@ -8,7 +8,15 @@ import OrderRouter from 'order/router'
 import userRouter from 'user/router'
 import fileRouter from 'file/router'
 
+import resetDb from "lib/utils/reset-db";
+
 export default (app) => {
+
+  app.get('/reset-db', (req, res) => {
+    resetDb()
+    res.send('ok')
+  })
+
   app.get("/", (req, res, next) => {
     res.send('<h1> hello <span style="color: red" >world</span> </h1>');
   });

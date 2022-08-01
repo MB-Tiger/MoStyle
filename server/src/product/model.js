@@ -69,7 +69,6 @@ class ProductSchema {
         categoryId,
         variables,
         images,
-        isFavorite: false,
         averageScore: 0,
         scores: {},
         createdAt: new Date().toISOString(),

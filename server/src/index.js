@@ -2,8 +2,8 @@ import express from "express";
 import { existsSync, mkdirSync } from 'fs'
 import _applyMiddlewares from "lib/server/middlewares";
 import _applyRoutes from "lib/server/routes";
-import path from "path";
 import 'lib/global'
+import path from 'path'
 
 const app = express();
 
