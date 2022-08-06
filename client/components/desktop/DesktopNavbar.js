@@ -37,7 +37,7 @@ const DesktopNavbar = () => {
         <div className="container flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <img className="w-10" src="/images/MR.Logo2.png" alt="Logo" />
-            <p className="text-lg font-semibold">E-CommTor</p>
+            <p className="text-lg font-semibold">MoStyle</p>
           </div>
           <ul className="flex items-center space-x-16 text-lg font-semibold">
             <li className="cursor-pointer hover:text-[#33A0FF] transition-all">

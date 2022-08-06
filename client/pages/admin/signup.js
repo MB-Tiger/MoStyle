@@ -37,7 +37,7 @@ const signup = () => {
           <h3 className="text-lg font-medium border-b-2 border-blue-600 pb-1">
             Sign up
           </h3>
-          <Link href={"/admin/login/stepone"}>
+          <Link href={"/admin/login"}>
             <h3 className="text-sm cursor-pointer">Login</h3>
           </Link>
         </div>

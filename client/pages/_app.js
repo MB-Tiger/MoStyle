@@ -6,6 +6,8 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import { Provider } from "react-redux";
+import Store from "../redux/Store";
 
 function MyApp({ Component, pageProps }) {
   const queryClient = useRef(new QueryClient());
@@ -13,9 +15,11 @@ function MyApp({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient.current}>
       <Hydrate state={pageProps.dehydratedState}>
-        <MainLayout>
-          <Component {...pageProps} />
-        </MainLayout>
+        <Provider store={Store}>
+          <MainLayout>
+            <Component {...pageProps} />
+          </MainLayout>
+        </Provider>
       </Hydrate>
     </QueryClientProvider>
   );

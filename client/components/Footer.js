@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="w-[235px] mx-2 mb-12">
             <div className="flex items-center space-x-2">
               <img className="w-10" src="/images/MR.Logo2.png" alt="Logo" />
-              <p className="text-lg font-semibold">E-CommTor</p>
+              <p className="text-lg font-semibold">MoStyle</p>
             </div>
             <div className="text-sm mt-4">
               Lorem Ipsum is simply dummy text of the printing and typesetting
