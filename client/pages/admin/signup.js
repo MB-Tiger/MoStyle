@@ -2,6 +2,8 @@ import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
 import SignupForm from "../../components/SignupForm";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const signup = () => {
   const router = useRouter();
@@ -22,11 +24,11 @@ const signup = () => {
       })
       .then((response) => {
         console.log(response.data);
-        if (response.status === 200) router.push("/admin/dashboard");
+        if (response.status === 200) router.push("/admin/login");
       })
       .catch((error) => {
         console.log(error);
-        return alert("Error please open the console");
+        return toast.error(`${error.response.data.msg}`, {theme: "colored"});
       });
   };
 

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
   at: "",
@@ -14,14 +15,30 @@ const TokenSlice = createSlice({
       oldAt = action.payload;
       return { at: oldAt };
     },
+    deleteAdminToken: (state, action) => {
+      const newAt = "";
+      return { at: newAt };
+    },
     addUserToken: (state, action) => {
       const oldUt = JSON.parse(JSON.stringify(state.ut));
       oldUt = action.payload;
       return { ut: oldUt };
     },
+    deleteUserToken: (state, action) => {
+      const newUt = ""
+      return { ut: newUt };
+    },
   },
+  extraReducers: {
+    [HYDRATE]: (state, action) => {
+      return {
+        ...state,
+        ...action.payload.myTokens,
+      };
+    },
+  }
 });
 
-export const { addAdminToken, addUserToken } = TokenSlice.actions;
+export const { addAdminToken, deleteAdminToken, addUserToken, deleteUserToken } = TokenSlice.actions;
 
 export default TokenSlice.reducer;

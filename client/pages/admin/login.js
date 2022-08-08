@@ -6,6 +6,8 @@ import LoginStepTwo from "../../components/LoginStepTwo";
 import LoginFailedPage from "../../components/LoginFailedPage";
 import { useDispatch } from "react-redux";
 import { addAdminToken } from "../../redux/TokenSlice";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [isLoginPage, setIsLoginPage] = useState(true);
@@ -32,7 +34,7 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error);
-        return alert("Error please open the console");
+        return toast.error(`${error.response.data.msg}`, {theme: "colored"})
       });
   };
 
@@ -54,7 +56,7 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error);
-        return alert("Error please open the console");
+        return toast.error(`${error.response.data.msg}`, {theme: "colored"})
       });
   };
 

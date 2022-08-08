@@ -1,21 +1,11 @@
-import { useEffect } from "react"
-import { useSelector } from "react-redux"
-import { useRouter } from "next/router"
+import AdminDashboardLayout from "../../../layout/AdminDashboardLayout";
 
 const dashboardHome = () => {
-  const at = useSelector((state) => state.Tokens.at)
-  const router = useRouter()
-  
-  useEffect(() => {
-    console.log(at)
-    if (!at) router.push("/admin/login")
-  }, [])
-
   return (
-    <div className='w-full min-h-screen py-8'>
-      <div className='container'></div>
-    </div>
-  )
-}
+    <AdminDashboardLayout>
+      <div className="container">welcome</div>
+    </AdminDashboardLayout>
+  );
+};
 
-export default dashboardHome
+export default dashboardHome;

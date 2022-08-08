@@ -4,7 +4,7 @@ import * as Yup from "yup";
 const SignupForm = ({ adminData, signupAdmin }) => {
   const signupValidationSchema = Yup.object().shape({
     name: Yup.string().min(2).required("Name required"),
-    phone: Yup.string().min(4).required("Password required"),
+    phone: Yup.string().required("phone required").matches(/^(\+98|0|0098)?9\d{9}$/, "Must enter valid number"),
   });
 
   return (
